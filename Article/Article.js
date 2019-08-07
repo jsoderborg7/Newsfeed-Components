@@ -115,28 +115,33 @@ const data = [
 
 const articles = document.querySelector('.articles');
 
-data.forEach(article =>{
-  articles.appendChild(createComponent(article))
+data.forEach(info =>{
+  articles.appendChild(createComponent(info.title, info.date, info.firstParagraph, info.secondParagraph, info.thirdParagraph))
 });
 
-function createComponent(title, date, p1, p2, p3) {
+function createComponent(title, date, firstParagraph, secondParagraph, thirdParagraph) {
+  
   const article = document.createElement('div');
   const articleTitle = document.createElement('h2');
-  const articleDate = document.createElement('p');
+  const articleDate = document.createElement('date');
   const paragraph1 = document.createElement('p');
   const paragraph2 = document.createElement('p');
   const paragraph3 = document.createElement('p');
-  const expandButton = document.createElement('span');
+  const expandButton = document.createElement('button');
 
-  article.appendChild(articleTitle);
-  article.appendChild(articleDate);
-  article.appendChild(paragraph1);
-  article.appendChild(paragraph2);
-  article.appendChild(paragraph3);
-  article.appendChild(expandButton);
+  articles.appendChild(articleTitle);
+  articles.appendChild(articleDate);
+  articles.appendChild(paragraph1);
+  articles.appendChild(paragraph2);
+  articles.appendChild(paragraph3);
+  articles.appendChild(expandButton);
 
-  article.classList.add("article");
+  articles.classList.add("article");
+  articleTitle.classList.add("h2");
   date.classList.add("date");
+  paragraph1.classList.add("article");
+  paragraph2.classList.add("article");
+  paragraph3.classList.add("article");
   expandButton.classList.add("expandButton");
 
   articleTitle.textContent = title;
@@ -149,5 +154,7 @@ function createComponent(title, date, p1, p2, p3) {
   expandButton.addEventListener("click", event =>{
     article.classList.toggle("article-open");
   })
+
+  return articles;
 
 }
