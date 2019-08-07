@@ -115,13 +115,13 @@ const data = [
 
 const articles = document.querySelector('.articles');
 
-data.forEach(info =>{
-  articles.appendChild(createComponent(info.title, info.date, info.firstParagraph, info.secondParagraph, info.thirdParagraph))
-})
+data.forEach(article =>{
+  articles.appendChild(createComponent(article))
+});
 
-function createComponent(title, date, firstParagraph, secondParagraph, thirdParagraph) {
+function createComponent(title, date, p1, p2, p3) {
   const article = document.createElement('div');
-  const articleHeading = document.createElement('h2');
+  const articleTitle = document.createElement('h2');
   const articleDate = document.createElement('p');
   const paragraph1 = document.createElement('p');
   const paragraph2 = document.createElement('p');
@@ -134,4 +134,20 @@ function createComponent(title, date, firstParagraph, secondParagraph, thirdPara
   article.appendChild(paragraph2);
   article.appendChild(paragraph3);
   article.appendChild(expandButton);
+
+  article.classList.add("article");
+  date.classList.add("date");
+  expandButton.classList.add("expandButton");
+
+  articleTitle.textContent = title;
+  date.textContent = date;
+  paragraph1.textContent = firstParagraph;
+  paragraph2.textContent = secondParagraph;
+  paragraph3.textContent = thirdParagraph;
+  expandButton.textContent = "Expand";
+
+  expandButton.addEventListener("click", event =>{
+    article.classList.toggle("article-open");
+  })
+
 }
